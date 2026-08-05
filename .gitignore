@@ -11,3 +11,6 @@ coverage.xml
 *.db
 .env
 .venv/
+artifacts/*.joblib
+artifacts/*.json
+!artifacts/.gitkeep

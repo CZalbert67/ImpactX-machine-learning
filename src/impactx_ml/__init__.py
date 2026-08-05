@@ -1,1 +1,3 @@
-__version__ = "0.1.0"
+"""ImpactX machine-learning prototype."""
+
+__version__ = "0.2.0"
