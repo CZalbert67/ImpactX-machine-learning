@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 
 from impactx_ml.api import app
 
-
 client = TestClient(app)
 
 

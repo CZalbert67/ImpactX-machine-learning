@@ -17,12 +17,10 @@ def decide_alert(
     """
     extreme_impact = telemetry.g_force_peak >= 18 or telemetry.speed_delta_kmh >= 85
     immobility_after_strong_impact = (
-        telemetry.g_force_peak >= 11
-        and telemetry.post_impact_inactivity_seconds >= 45
+        telemetry.g_force_peak >= 11 and telemetry.post_impact_inactivity_seconds >= 45
     )
-    physiologic_risk = (
-        telemetry.g_force_peak >= 8
-        and (telemetry.heart_rate_bpm <= 38 or telemetry.heart_rate_bpm >= 205)
+    physiologic_risk = telemetry.g_force_peak >= 8 and (
+        telemetry.heart_rate_bpm <= 38 or telemetry.heart_rate_bpm >= 205
     )
 
     if extreme_impact or immobility_after_strong_impact or physiologic_risk:

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -29,8 +28,7 @@ class CollisionPredictionService:
             for label, probability in zip(model_classes, raw_probabilities, strict=True)
         }
         ordered_probabilities = {
-            severity.value: probability_map.get(severity.value, 0.0)
-            for severity in Severity
+            severity.value: probability_map.get(severity.value, 0.0) for severity in Severity
         }
         confidence = float(np.max(raw_probabilities))
         severity = Severity(predicted_label)

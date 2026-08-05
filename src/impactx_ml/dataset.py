@@ -97,17 +97,14 @@ def generate_synthetic_dataset(
             continue
         config = CLASS_CONFIG[severity]
         generated = {
-            feature: _sample_distribution(rng, config[feature], count)
-            for feature in FEATURE_NAMES
+            feature: _sample_distribution(rng, config[feature], count) for feature in FEATURE_NAMES
         }
 
         # A small number of abnormal low-heart-rate critical events makes the dataset less trivial.
         if severity in {Severity.SEVERE, Severity.CRITICAL}:
             low_rate_mask = rng.random(count) < (0.08 if severity == Severity.SEVERE else 0.18)
             low_rates = rng.normal(42, 8, size=count)
-            generated["heart_rate_bpm"][low_rate_mask] = np.clip(
-                low_rates[low_rate_mask], 25, 65
-            )
+            generated["heart_rate_bpm"][low_rate_mask] = np.clip(low_rates[low_rate_mask], 25, 65)
 
         for index in range(count):
             row = {feature: float(generated[feature][index]) for feature in FEATURE_NAMES}
